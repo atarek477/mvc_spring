@@ -31,20 +31,7 @@
 </nav>
 
 <main class="flex-shrink-0">
-    <section class="py-5 bg-light">
-        <div class="container px-5 my-5">
-            <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
-            <a class="btn btn-lg btn-primary" href="#!">Contact us</a>
-        </div>
-
-        <div class="container px-5 my-5">
-            <div class="row gx-5">
-                <div th:each="club: ${clubs}" class="position-relative mb-5 mb-lg-0">
-                    <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
-                </div>
-            </div>
-        </div>
-    </section>
+    <section layout:fragment="content"></section>
 </main>
 
 <footer class="bg-dark py-4 mt-auto">
