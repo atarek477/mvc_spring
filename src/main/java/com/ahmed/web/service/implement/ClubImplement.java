@@ -26,8 +26,9 @@ return clubs.stream().map((club)->mapToClubDto(club)).collect(Collectors.toList(
     }
 
     @Override
-    public void saveClubServices(Club club) {
-        clubRepository.save(club);
+    public void saveClubServices(ClubDto club) {
+        Club club1= mapToClub(club);
+        clubRepository.save(club1);
     }
 
     @Override
