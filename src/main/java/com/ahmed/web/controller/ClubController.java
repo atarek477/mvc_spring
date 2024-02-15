@@ -45,22 +45,21 @@ public class ClubController {
     public String updateClubForm(@PathVariable("id")long id,Model model) {
         ClubDto clubDto= clubService.findClubById(id);
         model.addAttribute("clubDto", clubDto);
-        System.out.println(clubDto.toString());
         return "club-edit";
 
     }
 
-    @PostMapping ("/club/edit/{id}")
-    public String saveClub(@PathVariable("id")long id,@Valid @ModelAttribute("club")ClubDto club
-    ,BindingResult result) {
-        if(result.hasErrors())
+    @PostMapping("/club/edit/{id}")
+    public String saveClub(@PathVariable("id") long id, @Valid @ModelAttribute("clubDto") ClubDto clubDto,
+                           BindingResult result) {
+
+        if (result.hasErrors())
             return "club-edit";
 
-        club.setId(id);
-        System.out.println(club);
-        clubService.updateClub(club);
+        clubDto.setId(id);
+        System.out.println(clubDto);
+        clubService.updateClub(clubDto);
         return "redirect:/clubs";
-
     }
 }
 
