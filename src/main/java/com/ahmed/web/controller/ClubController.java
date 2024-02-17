@@ -48,6 +48,14 @@ return "club-create";
 
     }
 
+
+    @GetMapping("/club/delete/{id}")
+    public String deleteClub(@PathVariable("id")long id) {
+        clubService.deleteClub(id);
+        return "redirect:/clubs";
+
+    }
+
     @GetMapping("/club/edit/{id}")
     public String updateClubForm(@PathVariable("id")long id,Model model) {
         ClubDto clubDto= clubService.findClubById(id);

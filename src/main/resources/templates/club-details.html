@@ -51,7 +51,8 @@
                         <div class="card-body">
                             <div class="small text-muted" th:text="${clubDto.createdOn}"></div>
                             <p class="card-text" th:text="${clubDto.content}"></p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
+                            <a class="btn btn-primary" th:href="@{/club/delete/{id}(id=${clubDto.id})}">Delete</a>
+
                         </div>
                     </div>
                     <!-- Nested row for non-featured blog posts-->

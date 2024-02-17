@@ -44,6 +44,11 @@ return clubs.stream().map((club)->mapToClubDto(club)).collect(Collectors.toList(
 
     }
 
+    @Override
+    public void deleteClub(long id) {
+        clubRepository.deleteById(id);
+    }
+
     private Club mapToClub(ClubDto clubDto) {
         Club club= Club.builder().id(clubDto.getId())
                 .title(clubDto.getTitle())
