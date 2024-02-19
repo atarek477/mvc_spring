@@ -1,13 +1,21 @@
 package com.ahmed.web.dto;
 
+import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class ClubDto {
 
     private Long id;
@@ -19,5 +27,7 @@ public class ClubDto {
     private String content;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+
+    private List<EventDto>eventDtos= new ArrayList<>();
 
 }

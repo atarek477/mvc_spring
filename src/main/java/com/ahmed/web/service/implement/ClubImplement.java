@@ -1,6 +1,7 @@
 package com.ahmed.web.service.implement;
 
 import com.ahmed.web.dto.ClubDto;
+import com.ahmed.web.mapper.ClubMapper;
 import com.ahmed.web.model.Club;
 import com.ahmed.web.repository.ClubRepository;
 import com.ahmed.web.service.ClubService;
@@ -10,9 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.ahmed.web.mapper.ClubMapper.mapToClub;
+import static com.ahmed.web.mapper.ClubMapper.mapToClubDto;
+
 @Service
 public class ClubImplement implements ClubService {
-private ClubRepository clubRepository;
+private final ClubRepository clubRepository;
     @Autowired
     public ClubImplement(ClubRepository clubRepository) {
         this.clubRepository = clubRepository;
@@ -21,7 +26,7 @@ private ClubRepository clubRepository;
     @Override
     public List<ClubDto> findAllClubs() {
         List<Club> clubs= clubRepository.findAll();
-return clubs.stream().map((club)->mapToClubDto(club)).collect(Collectors.toList());
+return clubs.stream().map(ClubMapper::mapToClubDto).collect(Collectors.toList());
 
     }
 
@@ -49,33 +54,11 @@ return clubs.stream().map((club)->mapToClubDto(club)).collect(Collectors.toList(
         clubRepository.deleteById(id);
     }
 
-    private Club mapToClub(ClubDto clubDto) {
-        Club club= Club.builder().id(clubDto.getId())
-                .title(clubDto.getTitle())
-                .photoUrl(clubDto.getPhotoUrl())
-                .content(clubDto.getContent())
-                .createdOn(clubDto.getCreatedOn())
-                .updatedOn(clubDto.getUpdatedOn())
-                .build();
-        return club;
-
-
+    @Override
+    public List<ClubDto> searchClubs(String result) {
+        List<Club> clubs = clubRepository.searchClubs(result);
+        return clubs.stream().map(ClubMapper::mapToClubDto).collect(Collectors.toList());
     }
 
 
-    public ClubDto mapToClubDto(Club club){
-        ClubDto clubDto= ClubDto.builder().id(club.getId())
-                .title(club.getTitle())
-                .photoUrl(club.getPhotoUrl())
-                .content(club.getContent())
-                .createdOn(club.getCreatedOn())
-                .updatedOn(club.getUpdatedOn())
-                .build();
-        return clubDto;
-
-
-
-
-
-    }
 }

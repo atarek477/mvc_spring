@@ -17,4 +17,5 @@ public interface ClubService {
     public void updateClub(ClubDto club);
 
     public void deleteClub(long id);
+    public List<ClubDto> searchClubs(String result);
 }

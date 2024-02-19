@@ -21,7 +21,6 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" th:href="@{club/create}">create club</a></li>
-                        <li><a class="dropdown-item" th:href="@{event/list}">get all events</a></li>
                         <li><a class="dropdown-item" href="blog-home.html">register</a></li>
                         <li><a class="dropdown-item" href="blog-post.html">logout</a></li>
                     </ul>
@@ -42,10 +41,13 @@
 
         <div class="container px-5 my-5">
             <div class="row gx-5">
-                <div th:each="club: ${clubs}" class="position-relative mb-5 mb-lg-0">
-                    <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />
-                    <a th:href="@{/club/edit/{id}(id=*{club.id})}" class="btn btn-primary">edit</a>
-                    <a th:href="@{/event/create/{clubId}(clubId=*{club.id})}" class="btn btn-primary">create event</a>
+                <div th:each="event: ${events}" class="position-relative mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-3 mb-3" th:src="${event.photoUrl}" alt="..." />
+                    <div>
+                        <h3 th:text="${event.name}">Event Name</h3>
+                        <a th:href="@{/event/{eventId}(eventId=*{event.id})}" class="btn btn-primary">details</a>
+                    </div>
+
                 </div>
             </div>
         </div>
