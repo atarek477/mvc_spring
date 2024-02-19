@@ -6,7 +6,7 @@ import com.ahmed.web.model.Event;
 public class EventMapper {
 
     public static Event mapToEvent(EventDto eventDto){
-        Event event= Event.builder()
+        return Event.builder()
                 .id(eventDto.getId())
                 .name(eventDto.getName())
                 .startTime(eventDto.getStartTime())
@@ -15,13 +15,13 @@ public class EventMapper {
                 .photoUrl(eventDto.getPhotoUrl())
                 .createdOn(eventDto.getCreatedOn())
                 .updatedOn(eventDto.getUpdatedOn())
+                .club(eventDto.getClub())
                 .build();
-        return event;
 
     }
     public static EventDto mapToEventDto(Event event){
 
-        EventDto eventDto= EventDto.builder()
+        return EventDto.builder()
                 .id(event.getId())
                 .name(event.getName())
                 .startTime(event.getStartTime())
@@ -30,8 +30,8 @@ public class EventMapper {
                 .photoUrl(event.getPhotoUrl())
                 .createdOn(event.getCreatedOn())
                 .updatedOn(event.getUpdatedOn())
+                .club(event.getClub())
                 .build();
-        return eventDto;
     }
 
 }

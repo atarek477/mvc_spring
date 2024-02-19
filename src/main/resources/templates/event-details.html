@@ -52,7 +52,7 @@
                             <p>Start Time: <span th:text="${#temporals.format(event.startTime, 'MMMM d, yyyy HH:mm')}">Start Time</span></p>
                             <p>End Time: <span th:text="${#temporals.format(event.endTime, 'MMMM d, yyyy HH:mm')}">End Time</span></p>
                             <p th:text="${event.type}">Event Type</p>
-
+                            <a th:href="@{/event/edit/{eventId}(eventId=*{event.id})}" class="btn btn-primary">edit</a>
                         </div>
                     </div>
                     <!-- Nested row for non-featured blog posts-->

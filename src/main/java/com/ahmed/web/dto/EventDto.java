@@ -1,5 +1,6 @@
 package com.ahmed.web.dto;
 
+import com.ahmed.web.model.Club;
 import jakarta.persistence.Entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,4 +28,5 @@ public class EventDto {
     private String photoUrl;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+    private Club club;
 }

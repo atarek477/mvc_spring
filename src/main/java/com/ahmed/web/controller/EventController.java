@@ -1,12 +1,16 @@
 package com.ahmed.web.controller;
 
+import com.ahmed.web.dto.ClubDto;
 import com.ahmed.web.dto.EventDto;
+import com.ahmed.web.model.Club;
 import com.ahmed.web.model.Event;
 import com.ahmed.web.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +64,24 @@ public class EventController {
         model.addAttribute("event",event);
         return "event-details";
 
+    }
+
+
+    @GetMapping("/event/edit/{eventId}")
+    public String updateEventForm(@PathVariable("eventId") long eventId, Model model) {
+        EventDto eventDto= eventService.getEvent(eventId);
+        model.addAttribute("eventDto", eventDto);
+        return "event-edit";
+
+    }
+
+    @PostMapping("/event/edit/{eventId}")
+    public String updateEvent(@PathVariable("eventId") long eventId,  @ModelAttribute("eventDto") EventDto eventDto) {
+
+        Club club = eventService.findClubByEventId(eventId);
+        eventDto.setClub(club);
+        eventService.updateEvent(eventDto);
+        return "redirect:/event/list";
     }
 
 
