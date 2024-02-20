@@ -20,4 +20,6 @@ public interface EventService {
 
 
     Club findClubByEventId(Long eventId);
+
+    void deleteEvent(long eventId);
 }
