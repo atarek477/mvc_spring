@@ -21,6 +21,7 @@ public class UserEntity {
     @Id
     private  Long UserId;
     private String Username;
+    private String Email;
     private String Password;
 @ManyToMany
     @JoinTable(name = "User_Role",
